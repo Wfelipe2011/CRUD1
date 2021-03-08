@@ -1,0 +1,26 @@
+{
+  "name": "formulario-1",
+  "version": "1.0.0",
+  "description": "Treinando API data 08-03-2021",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wfelipe2011/CRUD1.git"
+  },
+  "author": "WilsonFelipe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wfelipe2011/CRUD1/issues"
+  },
+  "homepage": "https://github.com/Wfelipe2011/CRUD1#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.19",
+    "npm": "^7.6.1"
+  }
+}
