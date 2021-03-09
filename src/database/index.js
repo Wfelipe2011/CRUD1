@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 
-let pastaMongo = "Teste";
-pastaMongo = "Producao"
+
+const pastaMongo = "myFirstDatabase";
+const senha = 661879
+console.log(senha)
+//`mongodb://localhost:27017/${pastaMongo}`
 mongoose
-  .connect(`mongodb://localhost:27017/${pastaMongo}`, {
+  .connect( `mongodb+srv://Wilson:${senha}@cluster0.d07wk.mongodb.net/${pastaMongo}?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => {
     console.log("Conectado ao Banco MongoDB");
@@ -15,4 +18,6 @@ mongoose
     console.log(`${error}: Erro ao conectar!`);
   });
 
-  module.exports = mongoose;
+module.exports = mongoose;
+
+
