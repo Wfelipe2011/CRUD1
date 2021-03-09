@@ -100,7 +100,7 @@ app.patch("/formulario", async (req, res) => {
  
 });
 
-const porta = "https://api-formulario.herokuapp.com/" || 3000
+const porta = "https://api-formulario.herokuapp.com/" 
 app.listen(porta, () => {
   console.log("Servidor rodando!");
 });
