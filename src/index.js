@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("./database/index");
 const app = express();
 const cors = require('cors');
+require('dotenv/config')
 const router = require("./Router/index");
 require("./models/formulario");
 const Formulario = mongoose.model("Formulario");
@@ -100,7 +101,8 @@ app.patch("/formulario", async (req, res) => {
  
 });
 
-const porta = "https://api-formulario.herokuapp.com/" 
+const porta = process.env.API_HEROKU  
+console.log(porta)
 app.listen(porta, () => {
   console.log("Servidor rodando!");
 });
