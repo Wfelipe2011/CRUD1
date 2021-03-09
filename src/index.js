@@ -1,11 +1,21 @@
 const express = require("express");
 const mongoose = require("./database/index");
 const app = express();
+const cors = require('cors');
 const router = require("./Router/index");
 require("./models/formulario");
 const Formulario = mongoose.model("Formulario");
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");// dentro do '*' poderia ser qual site poderia fazer a requisiçao.
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "X-PINGOTHER, Content-Type, Authorization");
+
+  app.use(cors());
+  next();
+})
 
 app.get("/formulario", async (req, res) => {
   const dados = req.body;
