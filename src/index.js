@@ -134,3 +134,10 @@ app.patch("/formulario", async (req, res) => {
 
 
 app.listen(process.env.PORT || 3000)
+
+
+/**
+ * StackOverflow
+ * req.paramsretornará parâmetros na rota combinada. 
+ * Se sua rota for / user /: id e você fizer uma solicitação para / user / 5 - req.paramsresultará{id: "5"}
+ */
