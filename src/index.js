@@ -18,9 +18,24 @@ app.use((req, res, next) => {
   next();
 })
 
-app.get("/formulario", async (req, res) => {
-  const dados = req.body;
-  const Date = await Formulario.findOne({ cpf: dados.cpf });
+app.get(`/formulario`, async (req, res) => {
+  const Date = await Formulario.find();
+  if (Date === null) {
+    return res.status(400).json({
+      error: true,
+      message: `Nenhum dado encontrado com o cpf:${dados.cpf}`,
+    });
+  } else {
+    return res.json({
+      Date: Date,
+    });
+  }
+});
+
+app.get(`/formulario/:cpf`, async (req, res) => {
+  const dados = req.params
+  console.log(`Valor ho header: ${dados}`)
+  const Date = await Formulario.findOne(dados);
 
   if (Date === null) {
     return res.status(400).json({
@@ -33,6 +48,22 @@ app.get("/formulario", async (req, res) => {
     });
   }
 });
+
+app.get(`/formulario/:name`, async (req, res) => {
+  const dados = req.params
+  const Date = await Formulario.findOne(dados);
+  if (Date === null) {
+    return res.status(400).json({
+      error: true,
+      message: `Nenhum dado encontrado com o cpf:${dados.cpf}`,
+    });
+  } else {
+    return res.json({
+      Date: Date,
+    });
+  }
+});
+
 
 app.post("/formulario", async (req, res) => {
   // Validação de cadastro
@@ -103,4 +134,4 @@ app.patch("/formulario", async (req, res) => {
 
 const porta = process.env.API_HEROKU  
 console.log(porta)
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3001)
