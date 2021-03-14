@@ -20,15 +20,14 @@ app.use((req, res, next) => {
 
 app.get(`/formulario`, async (req, res) => {
   const Date = await Formulario.find();
+  
   if (Date === null) {
     return res.status(400).json({
       error: true,
       message: `Nenhum dado encontrado com o cpf:${dados.cpf}`,
     });
   } else {
-    return res.json({
-      Date: Date,
-    });
+    return res.json(Date);
   }
 });
 
@@ -43,9 +42,7 @@ app.get(`/formulario/:cpf`, async (req, res) => {
       message: `Nenhum dado encontrado com o cpf:${dados.cpf}`,
     });
   } else {
-    return res.json({
-      Date: Date,
-    });
+    return res.json(Date);
   }
 });
 
@@ -133,7 +130,7 @@ app.patch("/formulario", async (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3001)
 
 
 /**
