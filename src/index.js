@@ -86,10 +86,10 @@ app.post("/formulario", async (req, res) => {
   }
 });
 
-app.delete("/formulario", async (req, res) => {
-  const dados = req.body;
-  const Date = await Formulario.deleteOne({ cpf: dados.cpf });
-  if (Date.n === 0) {
+app.delete("/formulario/:cpf", async (req, res) => {
+  const dados = req.params
+  const Date = await Formulario.deleteOne(dados);
+  if (Date === null) {
     return res.status(400).json({
       message: `Nenhum dado encontrado com o cpf:${dados.cpf}`,
     });
