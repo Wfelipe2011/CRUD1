@@ -100,21 +100,9 @@ app.delete("/formulario/:cpf", async (req, res) => {
   }
 });
 
-app.patch("/formulario", async (req, res) => {
-  const dados = req.body;
-  const Date = await Formulario.updateOne({ cpf: dados.cpf }, {
-    name: dados.name,
-    sobrenome: dados.sobrenome,
-    cpf: dados.cpf,
-    phone: dados.phone,
-    profissao: dados.profissao,
-    cep: dados.cep,
-    endereco: dados.endereco,
-    bairro: dados.bairro,
-    cidade:dados.cidade,
-  });
-  const usuario = await Formulario.findOne({ cpf: dados.cpf })
-  console.log(usuario)
+app.put("/formulario/:cpf", async (req, res) => {
+  const dados = req.body
+  const Date = await Formulario.updateOne(dados)
   if (Date.n === 0) {
     return res.status(400).json({
       message: `Nenhum dado encontrado com o cpf:${dados.cpf}`,
@@ -122,8 +110,9 @@ app.patch("/formulario", async (req, res) => {
   } else {
     return res.json({
       message: "Usuario atualizado com sucesso!",
-      name: usuario.name,
-      cpf: usuario.cpf
+      name: Date.name,
+      email: Date.email,
+      cpf: Date.cpf
     });
   }
  
